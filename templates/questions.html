@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+</head>
+<body>
+    <h1>Satisfaction Survey</h1>
+    <h3>Please answer thes questions to the best of your ability</h3>
+    {% if param == 0 %}
+        <p>{{q1}}</p>
+        
+    {% elif param == 1 %}
+        <p>{{q2}}</p>
+    {% elif param == 2 %}
+        <p>{{q3}}</p>
+    {% else %}
+        <p>{{q4}}</p>
+    {% endif %}
+
+    {% if param == 0 or param == 1 or param == 3 %}
+        <form action="/answers" method="POST">
+            <input type="radio" name="choice" value="yes">
+            <label for="yes">Yes</label><br>
+            <input type="radio" name="choice" value="no">
+            <label for="no">No</label><br>
+            <button>next question</button>
+        </form>
+    {% else %}
+        <form action="/answers" method="POST">
+            <input type="radio" name="choice" value="Less than $10,000">
+            <label for="less">"Less than $10,000"</label><br>
+            <input type="radio" name="choice" value="$10,000 or more">
+            <label for="more">$10,000 or more</label><br>
+            <button>Next question</button>
+        </form>
+    {% endif %}
+
+</body>
+</html>
